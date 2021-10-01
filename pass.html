@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <title>java script 6</title>
+ </head>
+<body>
+    <h1>Pass Phrase by Srikanth Reddy Bhumpalli</h1>
+    <hr>
+
+<h2>Getting input</h2>
+<form id="phraseCheckForm">
+    <div style="margin:10px;">
+    <label for="secret_phrase">Enter the secret phrase</label>
+    <input type ="password" id="secret_phrase" name="secret_phrase" value="Let me in">
+</div>
+<div style="margin:10px;">
+    <label for="phrase">Enter a phrase</label>
+    <input type ="text" id="phrase" name="phrase"/>
+</div>
+<div style="margin:10px;">
+    <input type="button" id="btnProcessPhrase" onclick="processPhrase()" value="Check the phrase"/>
+</div>
+</form>
+
+
+<p id="result" style="margin:10px;"></p>
+
+<script> 
+ correct = 0;
+ wrong = 0;
+
+function processPhrase (){
+    console.log("Getting form values")
+    var secretPhrase = document.getElementById("secret_phrase").value;
+    var phrase = document.getElementById("phrase").value;
+    if(secretPhrase != null && secretPhrase.trim() != "" && phrase != null && phrase.trim() != "" && secretPhrase == phrase){
+      correct =correct + 1;
+      alert("Access Allowed");
+    }else{
+        wrong = wrong + 1;
+        alert("Access Denied");  
+    }
+     var out = document.getElementById("result");
+    
+     out.innerHTML = "Correct: " + correct + "<br>" + "Wrong: " + wrong;
+    
+}
+</script>
+
+
+</body>
+</html> 
