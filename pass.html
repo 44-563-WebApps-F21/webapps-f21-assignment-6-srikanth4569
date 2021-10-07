@@ -2,52 +2,79 @@
 <html>
  <head>
      <title>java script 6</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+       integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
  </head>
 <body>
     <h1>Pass Phrase by Srikanth Reddy Bhumpalli</h1>
     <hr>
 
-<h2>Getting input</h2>
+
+<div class="container"><p id="result"></p></div>
+<div class="container mt-5 border border-info p-3">
 <form id="phraseCheckForm">
-    <div style="margin:10px;">
-    <label for="secret_phrase">Enter the secret phrase</label>
-    <input type ="password" id="secret_phrase" name="secret_phrase" value="Let me in">
+   <div class="row mb-3 form-group"> 
+   
+    <div class="col-6 col-lg-4 col-md-4 col-sm-6"><label for="secret_phrase">Enter the secret phrase</label></div>
+    <div class="col-6 col-lg-4 col-md-6 col-sm-6"><input type ="password" id="secret_phrase" name="secret_phrase" value="Let me in"></div>
+
+   </div>
+<div class="row mb-3 form-group">
+    <div class="col-6 col-lg-4 col-md-4 col-sm-6"><label for="phrase">Enter a phrase</label></div>
+    <div class="col-6 col-lg-4 col-md-6 col-sm-6"><input type ="text" id="phrase" name="phrase"/></div>
 </div>
-<div style="margin:10px;">
-    <label for="phrase">Enter a phrase</label>
-    <input type ="text" id="phrase" name="phrase"/>
-</div>
-<div style="margin:10px;">
-    <input type="button" id="btnProcessPhrase" onclick="processPhrase()" value="Check the phrase"/>
+<div class="row mb-3">
+    <div class="col-12 col-sm-6 col-lg-4 col-md-4"><button id="btnProcessPhrase" type="button" onclick="processPhrase()" class="btn btn-lg btn-primary"> Check the phrase </button></div>
 </div>
 </form>
+</div>
 
 
-<p id="result" style="margin:10px;"></p>
 
 <script> 
  correct = 0;
  wrong = 0;
-
+ incorrectThreeTimes = 0;
 function processPhrase (){
     console.log("Getting form values")
     var secretPhrase = document.getElementById("secret_phrase").value;
     var phrase = document.getElementById("phrase").value;
+    
     if(secretPhrase != null && secretPhrase.trim() != "" && phrase != null && phrase.trim() != "" && secretPhrase == phrase){
       correct =correct + 1;
+      incorrectThreeTimes = 0;
       alert("Access Allowed");
     }else{
         wrong = wrong + 1;
-        alert("Access Denied");  
+        incorrectThreeTimes = incorrectThreeTimes + 1;
+        if(incorrectThreeTimes == 3){
+        document.getElementById("btnProcessPhrase").setAttribute("onclick","showAccLockedMessage()");
+        showAccLockedMessage();
+        }
+        else
+         alert("Access Denied");  
     }
+
+   
      var out = document.getElementById("result");
     
      out.innerHTML = "Correct: " + correct + "<br>" + "Wrong: " + wrong;
     
 }
+
+function showAccLockedMessage(){
+    alert("account locked");  
+}
 </script>
-<div class="container">
-    <img src="panther.jpg" id="image" height="200" width="200" alt="panther image" style="cursor:pointer" onclick="newImage();"></img>
+<div class="container border border-info p-4">
+    <img src="panther.jpg" class="img-fluid" id="image" height="200" width="200" alt="panther image" style="cursor:pointer" onclick="newImage();"></img>
 </div>
 <script>
     usingImage =1;
