@@ -46,7 +46,32 @@ function processPhrase (){
     
 }
 </script>
+<div class="container">
+    <img src="panther.jpg" id="image" height="200" width="200" alt="panther image" style="cursor:pointer" onclick="newImage();"></img>
+</div>
+<script>
+    usingImage =1;
+    function newImage(){
+        
+        switch (usingImage) {
+            case 1:
+                document.getElementById("image").setAttribute('src','horse.jpg');
+                usingImage = 2;
+                break;
+            case 2:
+                document.getElementById("image").setAttribute('src','antelope.jpg');
+                usingImage = 3;
+                break;
+            case 3:
+                document.getElementById("image").setAttribute('src','panther.jpg');
+                usingImage = 1;
+                break;
+        }
 
+    }
+        
 
+    
+</script>
 </body>
 </html> 

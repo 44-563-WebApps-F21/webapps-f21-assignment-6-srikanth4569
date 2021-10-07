@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+ <title>Base exponent</title>
+<body>
+
+<h2>Srikanth Reddy Bhumpalli computes</h2>
+
+<form>
+    <label for="base">Enter a base </label>
+    <input type="number" id="base" name="base" value=10> <br>
+
+    <label for="exponent">Enter an exponent </label>
+    <input type="number" id="exponent" name="exponent" value=2> <br>
+
+    <input type="button" onclick="powers()" value="Compute">
+
+    <br> <br>
+        <input type="radio" id="plusOp" name="operator" value="plus"   
+          checked onclick="processRadio(this)">
+        <label for="plusOp">+</label></br>
+      
+        <input type="radio" id="minusOP" name="operator" 
+           value="minus" onclick="processRadio(this)">
+        <label for="minusOP">-</label></br>
+      
+        <input type="radio" id="timesOp" name="operator"   
+           value="times" onclick="processRadio(this)">
+        <label for="timesOp">*</label></br>
+        
+        <input type="radio" id="divOp" name="operator"   
+        value="divide" onclick="processRadio(this)">
+        <label for="divOp">/</label></br>
+        
+      
+</form>
+
+
+<p id="result"> </p>
+
+<p id="opResult"> </p>
+
+<script> 
+
+function powers(){
+    
+    var base = document.getElementById("base").value;
+    var exponent = document.getElementById("exponent").value;
+    var htmlResult = document.getElementById("result");
+    var output = "";
+    var result = 1;
+    for(var i=1; i <= exponent; i++){
+        result = base * result;
+        output = output + result + " ";
+    }
+    
+        htmlResult.innerHTML = "Powers of base are: " + output;   
+}
+
+function processRadio(element){
+    var operand1 = parseInt(document.getElementById("base").value);
+    var operand2 = parseInt(document.getElementById("exponent").value);
+    var htmlResult = document.getElementById("opResult");
+    var operator = element.value;
+    var output;
+    switch (operator) {
+            case 'plus':
+                output = operand1 + operand2;
+                break;
+            case 'minus':
+                output = operand1 - operand2;
+                break;
+            case 'times':
+                output = operand1 * operand2;
+                break;
+            case 'divide':
+                output = operand1 / operand2;
+                break;
+        }
+
+        var selector = 'label[for=' + element.id + ']';
+        var label = document.querySelector(selector);
+
+        htmlResult.innerHTML = operand1 + " " + label.innerHTML + " " +operand2 + " = "  + output; 
+}
+</script>
+
+</body>
+</html> 
